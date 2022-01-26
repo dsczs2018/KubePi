@@ -96,7 +96,7 @@ const message = {
         login: {
             username_or_email: "username or email",
             password: "password",
-            title: "login KubePi",
+            title: "login",
             welcome: "Welcome back, please enter your user name and password to log in",
             expires: "The authentication information has expired. Please log in again."
         },
