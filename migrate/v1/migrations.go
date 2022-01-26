@@ -107,7 +107,7 @@ var CreateAdministrator = migrations.Migration{
 		}
 
 		// 创建管理员用户
-		defaultUserPass := "kubepi"
+		defaultUserPass := "123456"
 		hash, _ := bcrypt.GenerateFromPassword([]byte(defaultUserPass), bcrypt.DefaultCost)
 		userAdmin := v1User.User{
 			BaseModel: v1.BaseModel{
