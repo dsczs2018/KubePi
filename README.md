@@ -22,7 +22,7 @@ KubePi 允许管理员导入多个 Kubernetes 集群，并且通过权限控制�
 
 - 打开浏览器访问：http://localhost:80/
 - 用户名：admin
-- 密码：kubepi
+- 密码：123456
 
 ### 在线体验
 
