@@ -14,11 +14,11 @@ MAIN= $(BASEPATH)/cmd/server/main.go
 APP_NAME=kubepi-server
 
 build_web_kubepi:
-	cd $(KUBEPIDIR) && npm install && npm run-script build
+	cd $(KUBEPIDIR) && yarn install && yarn build
 build_web_dashboard:
-	cd $(DASHBOARDDIR) && npm install && npm run-script build
+	cd $(DASHBOARDDIR) && yarn install && yarn build
 build_web_terminal:
-	cd $(TERMINALDIR) && npm install && npm run-script build
+	cd $(TERMINALDIR) && yarn install && yarn build
 
 build_web: build_web_kubepi build_web_dashboard build_web_terminal
 
