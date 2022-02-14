@@ -1,86 +1,86 @@
 package ldap
 
 import (
-	"github.com/KubeOperator/kubepi/internal/service/v1/common"
-	"github.com/KubeOperator/kubepi/internal/service/v1/ldap"
-	"github.com/kataras/iris/v12"
-	"github.com/kataras/iris/v12/context"
+    "github.com/KubeOperator/kubepi/internal/service/v1/common"
+    "github.com/KubeOperator/kubepi/internal/service/v1/ldap"
+    "github.com/kataras/iris/v12"
+    "github.com/kataras/iris/v12/context"
 )
 
 type Handler struct {
-	ldapService ldap.Service
+    ldapService ldap.Service
 }
 
 func NewHandler() *Handler {
-	return &Handler{
-		ldapService: ldap.NewService(),
-	}
+    return &Handler{
+        ldapService: ldap.NewService(),
+    }
 }
 
 func (h *Handler) ListLdap() iris.Handler {
-	return func(ctx *context.Context) {
-		ldaps, err := h.ldapService.List(common.DBOptions{})
-		if err != nil {
-			ctx.StatusCode(iris.StatusInternalServerError)
-			ctx.Values().Set("message", err.Error())
-			return
-		}
-		ctx.Values().Set("data", ldaps)
-	}
+    return func(ctx *context.Context) {
+        ldaps, err := h.ldapService.List(common.DBOptions{})
+        if err != nil {
+            ctx.StatusCode(iris.StatusInternalServerError)
+            ctx.Values().Set("message", err.Error())
+            return
+        }
+        ctx.Values().Set("data", ldaps)
+    }
 }
 
 func (h *Handler) AddLdap() iris.Handler {
-	return func(ctx *context.Context) {
-		var req Ldap
-		if err := ctx.ReadJSON(&req); err != nil {
-			ctx.StatusCode(iris.StatusBadRequest)
-			ctx.Values().Set("message", err.Error())
-		}
-		err := h.ldapService.Create(&req.Ldap, common.DBOptions{})
-		if err != nil {
-			ctx.StatusCode(iris.StatusInternalServerError)
-			ctx.Values().Set("message", err.Error())
-			return
-		}
-		ctx.Values().Set("data", &req)
-	}
+    return func(ctx *context.Context) {
+        var req Ldap
+        if err := ctx.ReadJSON(&req); err != nil {
+            ctx.StatusCode(iris.StatusBadRequest)
+            ctx.Values().Set("message", err.Error())
+        }
+        err := h.ldapService.Create(&req.Ldap, common.DBOptions{})
+        if err != nil {
+            ctx.StatusCode(iris.StatusInternalServerError)
+            ctx.Values().Set("message", err.Error())
+            return
+        }
+        ctx.Values().Set("data", &req)
+    }
 }
 
 func (h *Handler) UpdateLdap() iris.Handler {
-	return func(ctx *context.Context) {
-		var req Ldap
-		if err := ctx.ReadJSON(&req); err != nil {
-			ctx.StatusCode(iris.StatusBadRequest)
-			ctx.Values().Set("message", err.Error())
-		}
-		err := h.ldapService.Update(req.UUID, &req.Ldap, common.DBOptions{})
-		if err != nil {
-			ctx.StatusCode(iris.StatusInternalServerError)
-			ctx.Values().Set("message", err.Error())
-			return
-		}
-		ctx.Values().Set("data", &req)
-	}
+    return func(ctx *context.Context) {
+        var req Ldap
+        if err := ctx.ReadJSON(&req); err != nil {
+            ctx.StatusCode(iris.StatusBadRequest)
+            ctx.Values().Set("message", err.Error())
+        }
+        err := h.ldapService.Update(req.UUID, &req.Ldap, common.DBOptions{})
+        if err != nil {
+            ctx.StatusCode(iris.StatusInternalServerError)
+            ctx.Values().Set("message", err.Error())
+            return
+        }
+        ctx.Values().Set("data", &req)
+    }
 }
 
 func (h *Handler) SyncLdapUser() iris.Handler {
-	return func(ctx *context.Context) {
-		uuid := ctx.Params().Get("id")
-		err := h.ldapService.Sync(uuid, common.DBOptions{})
-		if err != nil {
-			ctx.StatusCode(iris.StatusInternalServerError)
-			ctx.Values().Set("message", err.Error())
-			return
-		}
-		ctx.Values().Set("data", "")
-	}
+    return func(ctx *context.Context) {
+        uuid := ctx.Params().Get("id")
+        err := h.ldapService.Sync(uuid, common.DBOptions{})
+        if err != nil {
+            ctx.StatusCode(iris.StatusInternalServerError)
+            ctx.Values().Set("message", err.Error())
+            return
+        }
+        ctx.Values().Set("data", "")
+    }
 }
 
 func Install(parent iris.Party) {
-	handler := NewHandler()
-	sp := parent.Party("/ldap")
-	sp.Get("/", handler.ListLdap())
-	sp.Post("/", handler.AddLdap())
-	sp.Put("/", handler.UpdateLdap())
-	sp.Post("/sync/:id", handler.SyncLdapUser())
+    handler := NewHandler()
+    sp := parent.Party("/ldap")
+    sp.Get("/", handler.ListLdap())
+    sp.Post("/", handler.AddLdap())
+    sp.Put("/", handler.UpdateLdap())
+    sp.Post("/sync/:id", handler.SyncLdapUser())
 }

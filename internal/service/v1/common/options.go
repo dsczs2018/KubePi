@@ -1,24 +1,24 @@
 package common
 
 import (
-	"github.com/KubeOperator/kubepi/internal/server"
-	"github.com/asdine/storm/v3"
+    "github.com/KubeOperator/kubepi/internal/server"
+    "github.com/asdine/storm/v3"
 )
 
 type DBService interface {
-	GetDB(options DBOptions) storm.Node
+    GetDB(options DBOptions) storm.Node
 }
 
 type DefaultDBService struct {
 }
 
 func (d *DefaultDBService) GetDB(options DBOptions) storm.Node {
-	if options.DB != nil {
-		return options.DB
-	}
-	return server.DB()
+    if options.DB != nil {
+        return options.DB
+    }
+    return server.DB()
 }
 
 type DBOptions struct {
-	DB storm.Node
+    DB storm.Node
 }

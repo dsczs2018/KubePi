@@ -1,13 +1,13 @@
 package homedir
 
 import (
-	"os"
+    "os"
 )
 
 func Expand(path string) string {
-	if path[0:2] == "~/" {
-		return os.Getenv("HOME") + path[1:]
-	} else {
-		return path
-	}
+    if path[0:2] == "~/" {
+        return os.Getenv("HOME") + path[1:]
+    } else {
+        return path
+    }
 }

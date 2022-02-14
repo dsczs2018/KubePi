@@ -10,34 +10,34 @@ spec:
   minReplicas: 2
   maxReplicas: 10
   metrics:
-  - type: Resource
-    resource:
-      name: cpu
-      target:
-        type: Utilization
-        averageUtilization: 80
-  - type: Pods
-    pods:
-      metric:
-        name: packets-per-second
-      target:
-        type: AverageValue
-        averageValue: 1k
-  - type: Resource
-    resource:
-      name: memory
-      target:
-        type: Utilization
-        averageValue: 200Mi
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 80
+    - type: Pods
+      pods:
+        metric:
+          name: packets-per-second
+        target:
+          type: AverageValue
+          averageValue: 1k
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageValue: 200Mi
 ---
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: kubelet-api-admin
 subjects:
-- kind: User
-  name: kubelet-api
-  apiGroup: rbac.authorization.k8s.io
+  - kind: User
+    name: kubelet-api
+    apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: ClusterRole
   name: system:kubelet-api-admin
@@ -81,5 +81,5 @@ spec:
   selector:
     app: kuard
   ports:
-  - port: 80
-    targetPort: 8080
+    - port: 80
+      targetPort: 8080

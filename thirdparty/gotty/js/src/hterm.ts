@@ -24,7 +24,7 @@ export class Hterm {
     };
 
     info(): { columns: number, rows: number } {
-        return { columns: this.columns, rows: this.rows };
+        return {columns: this.columns, rows: this.rows};
     };
 
     output(data: string) {
@@ -75,9 +75,12 @@ export class Hterm {
     };
 
     deactivate(): void {
-        this.io.onVTKeystroke    = function(){};
-        this.io.sendString       = function(){};
-        this.io.onTerminalResize = function(){};
+        this.io.onVTKeystroke = function () {
+        };
+        this.io.sendString = function () {
+        };
+        this.io.onTerminalResize = function () {
+        };
         this.term.uninstallKeyboard();
     }
 

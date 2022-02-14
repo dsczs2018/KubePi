@@ -1,17 +1,17 @@
 package server
 
 import (
-	"github.com/KubeOperator/webkubectl/gotty/webtty"
+    "github.com/KubeOperator/webkubectl/gotty/webtty"
 )
 
 // Slave is webtty.Slave with some additional methods.
 type Slave interface {
-	webtty.Slave
+    webtty.Slave
 
-	Close() error
+    Close() error
 }
 
 type Factory interface {
-	Name() string
-	New(params map[string][]string) (Slave, error)
+    Name() string
+    New(params map[string][]string) (Slave, error)
 }

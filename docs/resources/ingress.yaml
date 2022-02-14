@@ -4,15 +4,15 @@ metadata:
   name: example-host-ingress
 spec:
   rules:
-  - host: www.mycompany.com
-    http:
-      paths:
-      - backend:
-          serviceName: www-service
-          servicePort: 80
-  - host: shop.mycompany.com
-    http:
-      paths:
-      - backend:
-          serviceName: shop-service
-          servicePort: 80
+    - host: www.mycompany.com
+      http:
+        paths:
+          - backend:
+              serviceName: www-service
+              servicePort: 80
+    - host: shop.mycompany.com
+      http:
+        paths:
+          - backend:
+              serviceName: shop-service
+              servicePort: 80

@@ -1,5 +1,5 @@
 import * as bare from "xterm";
-import { lib } from "libapps"
+import {lib} from "libapps"
 
 
 bare.loadAddon("fit");
@@ -31,7 +31,9 @@ export class Xterm {
 
         this.term.on("open", () => {
             this.resizeListener();
-            window.addEventListener("resize", () => { this.resizeListener(); });
+            window.addEventListener("resize", () => {
+                this.resizeListener();
+            });
         });
 
         this.term.open(elem, true);
@@ -40,7 +42,7 @@ export class Xterm {
     };
 
     info(): { columns: number, rows: number } {
-        return { columns: this.term.cols, rows: this.term.rows };
+        return {columns: this.term.cols, rows: this.term.rows};
     };
 
     output(data: string) {

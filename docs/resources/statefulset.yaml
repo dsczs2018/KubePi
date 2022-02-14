@@ -42,7 +42,7 @@ spec:
     - metadata:
         name: www
       spec:
-        accessModes: ["ReadWriteOnce"]
+        accessModes: [ "ReadWriteOnce" ]
         storageClassName: "hostpath" # this storage class must exist in your cluster
         resources:
           requests:

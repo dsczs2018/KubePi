@@ -4,12 +4,19 @@ export declare namespace hterm {
         onTerminalReady: () => void;
 
         constructor();
+
         getPrefs(): Prefs;
+
         decorate(HTMLElement);
+
         installKeyboard(): void;
+
         uninstallKeyboard(): void;
+
         setWindowTitle(title: string): void;
+
         reset(): void;
+
         softReset(): void;
     }
 
@@ -21,7 +28,9 @@ export declare namespace hterm {
         onTerminalResize: ((columns: number, rows: number) => void) | null;
 
         push(): IO;
+
         writeUTF(data: string);
+
         showOverlay(message: string, timeout: number | null);
     }
 
@@ -37,7 +46,8 @@ export declare namespace lib {
     }
 
     export interface Memory {
-        new (): Storage;
+        new(): Storage;
+
         Memory(): Storage
     }
 

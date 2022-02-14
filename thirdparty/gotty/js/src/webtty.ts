@@ -15,25 +15,41 @@ export const msgSetReconnect = '5';
 
 export interface Terminal {
     info(): { columns: number, rows: number };
+
     output(data: string): void;
+
     showMessage(message: string, timeout: number): void;
+
     removeMessage(): void;
+
     setWindowTitle(title: string): void;
+
     setPreferences(value: object): void;
+
     onInput(callback: (input: string) => void): void;
+
     onResize(callback: (colmuns: number, rows: number) => void): void;
+
     reset(): void;
+
     deactivate(): void;
+
     close(): void;
 }
 
 export interface Connection {
     open(): void;
+
     close(): void;
+
     send(data: string): void;
+
     isOpen(): boolean;
+
     onOpen(callback: () => void): void;
+
     onReceive(callback: (data: string) => void): void;
+
     onClose(callback: () => void): void;
 }
 
@@ -77,10 +93,10 @@ export class WebTTY {
                 const resizeHandler = (colmuns: number, rows: number) => {
                     connection.send(
                         msgResizeTerminal + JSON.stringify(
-                            {
-                                columns: colmuns,
-                                rows: rows
-                            }
+                        {
+                            columns: colmuns,
+                            rows: rows
+                        }
                         )
                     );
                 };

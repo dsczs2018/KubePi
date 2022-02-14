@@ -1,7 +1,7 @@
 package webtty
 
 import (
-	"io"
+    "io"
 )
 
 // Master represents a PTY master, usually it's a websocket connection.

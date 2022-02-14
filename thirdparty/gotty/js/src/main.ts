@@ -1,7 +1,7 @@
-import { Hterm } from "./hterm";
-import { Xterm } from "./xterm";
-import { Terminal, WebTTY, protocols } from "./webtty";
-import { ConnectionFactory } from "./websocket";
+import {Hterm} from "./hterm";
+import {Xterm} from "./xterm";
+import {protocols, Terminal, WebTTY} from "./webtty";
+import {ConnectionFactory} from "./websocket";
 
 // @TODO remove these
 declare var gotty_auth_token: string;
@@ -27,4 +27,5 @@ if (elem !== null) {
         closer();
         term.close();
     });
-};
+}
+;
